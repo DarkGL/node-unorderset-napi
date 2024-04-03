@@ -5,7 +5,6 @@
 
 export class UnorderedSet {
   constructor()
-  insert(value: string): void
-  has(value: string): boolean
-  iterate(): Array<string>
+  insert(value: number): void
+  has(value: number): boolean
 }
