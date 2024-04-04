@@ -4,7 +4,7 @@ use napi::JsBigInt;
 
 #[napi]
 pub struct UnorderedSet {
-    inner: Set64<i64>,
+    inner: Set64<u64>,
 }
 
 #[napi]
@@ -18,11 +18,11 @@ impl UnorderedSet {
 
     #[napi]
     pub fn insert(&mut self, value: JsBigInt ) {
-        self.inner.insert(value.get_i64().unwrap().0);
+        self.inner.insert(value.get_u64().unwrap().0);
     }
 
     #[napi]
     pub fn has(&self, value: JsBigInt) -> bool {
-        self.inner.contains(value.get_i64().unwrap().0)
+        self.inner.contains(value.get_u64().unwrap().0)
     }
 }
