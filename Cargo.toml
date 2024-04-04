@@ -15,9 +15,13 @@ tinyset = "0.4.15"
 [build-dependencies]
 napi-build = "2.0.1"
 
+[build]
+rustflags = ["-C", "target-cpu=native"]
+
 [profile.release]
-lto = true
+lto = "fat"
 strip = "symbols"
 opt-level = 3
 codegen-units = 1
 incremental = false
+panic = "abort"
