@@ -1,7 +1,16 @@
 import test from 'ava'
 
-import { sum } from '../index.js'
+import { UnorderedSet } from '../index.js'
 
-test('sum from native', (t) => {
-  t.is(sum(1, 2), 3)
+test('insert', (t) => {
+  const set = new UnorderedSet()
+
+  set.insert(1)
+  set.insert(2)
+  set.insert(3)
+
+  t.is(set.has(1), true)
+  t.is(set.has(2), true)
+  t.is(set.has(3), true)
+  t.is(set.has(4), false)
 })
