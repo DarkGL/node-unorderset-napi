@@ -1,9 +1,10 @@
 use napi_derive::napi;
-use std::collections::HashSet;
+use tinyset::SetU64;
+use xxhash_rust::xxh3::xxh3_64;
 
 #[napi]
 pub struct UnorderedSet {
-    inner: HashSet<String>,
+    inner: SetU64,
 }
 
 #[napi]
@@ -11,22 +12,19 @@ impl UnorderedSet {
     #[napi(constructor)]
     pub fn new() -> Self {
         UnorderedSet {
-            inner: HashSet::new(),
+            inner: SetU64::new(),
         }
     }
 
     #[napi]
     pub fn insert(&mut self, value: String) {
-        self.inner.insert(value);
+        let hash = xxh3_64(value.as_bytes());
+        self.inner.insert(hash);
     }
 
     #[napi]
     pub fn has(&self, value: String) -> bool {
-        self.inner.contains(&value)
-    }
-
-    #[napi]
-    pub fn iterate(&self) -> Vec<String> {
-        self.inner.iter().cloned().collect()
+        let hash = xxh3_64(value.as_bytes());
+        self.inner.contains(hash)
     }
 }

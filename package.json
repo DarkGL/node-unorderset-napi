@@ -9,6 +9,7 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "@biomejs/biome": "1.7.3",
     "@napi-rs/cli": "^2.18.0",
     "ava": "^6.0.1"
   },
@@ -25,7 +26,9 @@
     "prepublishOnly": "napi prepublish -t npm",
     "test": "ava",
     "universal": "napi universal",
-    "version": "napi version"
+    "version": "napi version",
+    "format": "npx @biomejs/biome check --apply ./benchmark",
+    "benchmark": "hyperfine --warmup 3 'node ./benchmark/map.js' 'node ./benchmark/set.js' 'node ./benchmark/unorder.js'"
   },
-  "packageManager": "yarn@4.1.1"
+  "packageManager": "yarn@4.2.2"
 }

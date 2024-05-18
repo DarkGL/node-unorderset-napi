@@ -1,13 +1,13 @@
-const { UnorderedSet } = require("../index");
+const { UnorderedSet } = require('../index');
 
 const set = new UnorderedSet();
 
 const iteration = 10_000_000;
 
 for (let i = 0; i < iteration; i++) {
-    set.insert(BigInt(i));
+    set.insert(i.toString());
 }
 
 for (let i = 0; i < iteration; i++) {
-    set.has(BigInt(i));
+    set.has(i.toString());
 }

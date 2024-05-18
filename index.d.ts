@@ -5,6 +5,6 @@
 
 export class UnorderedSet {
   constructor()
-  insert(value: bigint): void
-  has(value: bigint): boolean
+  insert(value: number): void
+  has(value: number): boolean
 }
